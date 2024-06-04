@@ -2,8 +2,7 @@
 
 ## Installation
 
-Download the `install.lua` file to your in-game computer using the Pastebin get command. Replace `pastebin_link` with the link to the Pastebin.
+Run tis command to install my Minecraft chest monitor to use in minecraft in-game computer:
 
 ```sh
-pastebin get pastebin_link install.lua
-wget run https://github.com/Aharhour/Computercraft
+wget https://raw.github.com/Aharhour/Computercraft/main/install.lua

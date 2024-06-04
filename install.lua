@@ -1,6 +1,8 @@
-wget run https://github.com/Aharhour/Computercraft/blob/main/install.lua
-
 local github_repository_url = "https://github.com/Aharhour/computercraft"
+
+local file1 = "chest_monitor.lua"
+local file2 = "link_naar_je_github_repository.md"
+local file3 = "README.md"
 
 local function downloadFile(url, path)
     local response = http.get(url)
@@ -9,13 +11,20 @@ local function downloadFile(url, path)
         local file = fs.open(path, "w")
         file.write(content)
         file.close()
-        print("File " .. path .. " downloaded successfully.")
+        print("- " .. path)
     else
-        print("Failed to download " .. path)
+        print("x " .. path)
     end
 end
 
-downloadFile(github_repository_url .. "chest_monitor.lua", "chest_monitor.lua")
+local download = textutils.unserialiseJSON(http.get(mpm_repository_url .. "download.json").readAll())
+
+for _, file in ipairs(download) do
+    downloadFile(github_repository_url .. file, "/computercraft/" .. file)
+    if file == "instal.lua" then
+        fs.move("/computercraft/instal.lua", "/" .. file)
+    end
+end
 
 local startupScript = [[
     os.run({}, "chest_monitor.lua")
