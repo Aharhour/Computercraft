@@ -1,9 +1,5 @@
 local github_repository_url = "https://github.com/Aharhour/computercraft"
 
-local file1 = "chest_monitor.lua"
-local file2 = "link_naar_je_github_repository.md"
-local file3 = "README.md"
-
 local function downloadFile(url, path)
     local response = http.get(url)
     if response and response.getResponseCode() == 200 then
@@ -11,20 +7,13 @@ local function downloadFile(url, path)
         local file = fs.open(path, "w")
         file.write(content)
         file.close()
-        print("- " .. path)
+        print("File " .. path .. " downloaded successfully.")
     else
-        print("x " .. path)
+        print("Failed to download " .. path)
     end
 end
 
-local download = textutils.unserialiseJSON(http.get(mpm_repository_url .. "download.json").readAll())
-
-for _, file in ipairs(download) do
-    downloadFile(github_repository_url .. file, "/computercraft/" .. file)
-    if file == "instal.lua" then
-        fs.move("/computercraft/instal.lua", "/" .. file)
-    end
-end
+downloadFile(github_repository_url .. "chest_monitor.lua", "chest_monitor.lua")
 
 local startupScript = [[
     os.run({}, "chest_monitor.lua")
