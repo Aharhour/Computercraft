@@ -1,4 +1,4 @@
-local github_repository_url = "https://github.com/Aharhour/computercraft"
+local github_repository_url = "https://raw.githubusercontent.com/Aharhour/computercraft/main/"
 
 local function downloadFile(url, path)
     local response = http.get(url)
@@ -13,7 +13,8 @@ local function downloadFile(url, path)
     end
 end
 
-downloadFile(github_repository_url .. "chest_monitor.lua", "instal.lua")
+downloadFile(github_repository_url .. "install.lua", "install.lua")
+downloadFile(github_repository_url .. "chest_monitor.lua", "chest_monitor.lua")
 
 local startupScript = [[
     os.run({}, "chest_monitor.lua")
