@@ -13,7 +13,7 @@ local function downloadFile(url, path)
     end
 end
 
-downloadFile(github_repository_url .. "chest_monitor.lua", "chest_monitor.lua")
+downloadFile(github_repository_url .. "chest_monitor.lua", "instal.lua")
 
 local startupScript = [[
     os.run({}, "chest_monitor.lua")
